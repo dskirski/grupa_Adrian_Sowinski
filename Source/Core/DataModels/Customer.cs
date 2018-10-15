@@ -6,21 +6,21 @@ using System.Text;
 
 namespace Core.DataModels
 {
-    public class User
+    public class Customer
     {
 
 
-        public int UserId { get; set; }
+    
 
         [Key]
-        public int Id { get; set; }
+        public int CustomerId { get; set; }
         [StringLength(100), Required]
         public string FirstName { get; set; }
         [StringLength(100), Required]
         public string LastName { get; set; }
 
         [NotMapped]
-        public virtual string FullName
+        public string FullName
         {
             get
             {
@@ -30,8 +30,9 @@ namespace Core.DataModels
 
         public string FB_Token { get; set; }
 
-        
 
-        
+        public virtual ICollection<Order> Orders { get; set; }
+
+
     }
 }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EbookShop.Migrations
 {
     [DbContext(typeof(EbookShopContext))]
-    [Migration("20181014212111_Initial")]
+    [Migration("20181015115528_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,6 +53,44 @@ namespace EbookShop.Migrations
                     b.ToTable("AuthorEbooks");
                 });
 
+            modelBuilder.Entity("Core.DataModels.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Description");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Core.DataModels.Customer", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FB_Token");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.HasKey("CustomerId");
+
+                    b.ToTable("Customers");
+                });
+
             modelBuilder.Entity("Core.DataModels.Ebook", b =>
                 {
                     b.Property<int>("EbookId")
@@ -76,6 +114,19 @@ namespace EbookShop.Migrations
                     b.ToTable("Ebooks");
                 });
 
+            modelBuilder.Entity("Core.DataModels.EbookCategory", b =>
+                {
+                    b.Property<int>("CategoryId");
+
+                    b.Property<int>("EbookId");
+
+                    b.HasKey("CategoryId", "EbookId");
+
+                    b.HasIndex("EbookId");
+
+                    b.ToTable("EbookCategories");
+                });
+
             modelBuilder.Entity("Core.DataModels.FilePath", b =>
                 {
                     b.Property<int>("FilePathId")
@@ -96,30 +147,28 @@ namespace EbookShop.Migrations
 
                     b.HasIndex("EbookId");
 
-                    b.ToTable("FilePath");
+                    b.ToTable("Files");
                 });
 
-            modelBuilder.Entity("Core.DataModels.User", b =>
+            modelBuilder.Entity("Core.DataModels.Order", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("FB_Token");
+                    b.Property<int>("CustomerId");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(101);
+                    b.Property<int>("EbookId");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(100);
+                    b.Property<DateTime>("OrderDate");
 
-                    b.Property<int>("UserId");
+                    b.HasKey("OrderId");
 
-                    b.HasKey("Id");
+                    b.HasIndex("CustomerId");
 
-                    b.ToTable("Users");
+                    b.HasIndex("EbookId");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Core.DataModels.AuthorEbooks", b =>
@@ -135,11 +184,37 @@ namespace EbookShop.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Core.DataModels.EbookCategory", b =>
+                {
+                    b.HasOne("Core.DataModels.Category", "Category")
+                        .WithMany("EbookCategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Core.DataModels.Ebook", "Ebook")
+                        .WithMany("EbookCategories")
+                        .HasForeignKey("EbookId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Core.DataModels.FilePath", b =>
                 {
-                    b.HasOne("Core.DataModels.Ebook")
+                    b.HasOne("Core.DataModels.Ebook", "Ebook")
                         .WithMany("Files")
                         .HasForeignKey("EbookId");
+                });
+
+            modelBuilder.Entity("Core.DataModels.Order", b =>
+                {
+                    b.HasOne("Core.DataModels.Customer", "Customer")
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Core.DataModels.Ebook", "Ebook")
+                        .WithMany("Orders")
+                        .HasForeignKey("EbookId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

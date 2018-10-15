@@ -23,6 +23,9 @@ namespace Core.DataModels
         /// </summary>
         public FileType FileType { get; set; }
 
+
+        public Ebook Ebook { get; set; }
+
     }
 
     public enum FileType

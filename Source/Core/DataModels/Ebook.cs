@@ -25,7 +25,10 @@ namespace Core.DataModels
         public virtual ICollection<FilePath> Files { get; set; }
    
         public virtual ICollection<AuthorEbooks> AuthorEbooks { get; set; }
-      
+
+        public virtual ICollection<EbookCategories> EbookCategories { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
         #endregion
     }
 }

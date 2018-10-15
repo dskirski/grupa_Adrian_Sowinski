@@ -17,7 +17,7 @@ namespace Core.DataModels
         public string LastName { get; set; }
 
         [NotMapped]
-        public virtual string FullName
+        public string FullName
         {
             get
             {
