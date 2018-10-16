@@ -10,10 +10,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\..\..\..\..\Documents\GitHub\Sales-Assistant-App\Dependecies\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
