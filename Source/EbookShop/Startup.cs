@@ -7,11 +7,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Core.Context;
+using NSwag.AspNetCore;
+
 namespace EbookShop
 {
     public class Startup
     {
 
+        // TODO CS to appsettings.json
         private const string ConnectionString = "Server=.\\SQLEXPRESS;Database=EbookShopDB;Trusted_Connection=True;";
   
         
@@ -35,6 +38,8 @@ namespace EbookShop
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
