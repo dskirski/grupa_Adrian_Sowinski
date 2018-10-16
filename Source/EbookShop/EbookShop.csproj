@@ -37,10 +37,6 @@
     <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ClientApp\src\generated\" />
-  </ItemGroup>
-
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">
@@ -70,7 +66,7 @@
 
   <Target Name="NSwag" AfterTargets="Build">
     <Exec Command="$(NSwagExe_Core21) aspnetcore2swagger /assembly:$(OutDir)/EbookShop.dll /output:swagger.json /UseHttpRequestMessageCreationMethod:true" />
-    <Exec Command="$(NSwagExe_Core21) swagger2tsclient /input:swagger.json /output:ClientApp/src/generated/clients.ts" />
+    <Exec Command="$(NSwagExe_Core21) swagger2tsclient /input:swagger.json /output:ClientApp/src/clients.generated.ts" />
   </Target>
 
 </Project>
