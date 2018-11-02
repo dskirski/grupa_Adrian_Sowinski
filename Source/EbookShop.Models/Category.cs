@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
-namespace Core.DataModels
+namespace EbookShop.Models
 {
     public class Category
     {
@@ -12,7 +12,7 @@ namespace Core.DataModels
         [Required]
         [StringLength(30)]
         public string CategoryName { get; set; }
-     
+
         public string Description { get; set; }
 
 

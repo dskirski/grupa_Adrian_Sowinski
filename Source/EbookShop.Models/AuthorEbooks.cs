@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.DataModels
+namespace EbookShop.Models
 {
    
    public class AuthorEbooks

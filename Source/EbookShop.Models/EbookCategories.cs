@@ -1,4 +1,4 @@
-﻿namespace Core.DataModels
+﻿namespace EbookShop.Models
 {
     public class EbookCategories
     {

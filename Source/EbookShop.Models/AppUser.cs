@@ -3,29 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using Microsoft.AspNetCore.Identity;
 
-namespace Core.DataModels
+namespace EbookShop.Models
 {
-    public class Author
+   public class AppUser : IdentityUser
     {
 
-        [Key]
-        public int Id { get; set; }
         [StringLength(100), Required]
         public string FirstName { get; set; }
         [StringLength(100), Required]
         public string LastName { get; set; }
-
-        [NotMapped]
-        public string FullName
-        {
-            get
-            {
-                return FirstName + " " + LastName;
-            }
-        }
-
-        public virtual ICollection<AuthorEbooks> AuthorEbooks { get; set; }
+        public long? FacebookId { get; set; }
 
     }
+
 }

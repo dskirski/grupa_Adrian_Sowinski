@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
-namespace Core.DataModels
+namespace EbookShop.Models
 {
     public class Ebook
     {
@@ -19,6 +19,7 @@ namespace Core.DataModels
         public string Description { get; set; }
 
         public decimal Price { get; set; }
+
 
         #region navigation properties
 
