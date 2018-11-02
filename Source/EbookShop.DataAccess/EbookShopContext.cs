@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
-using Core.DataModels;
-namespace Core.Context
+﻿using Microsoft.EntityFrameworkCore;
+using EbookShop.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
+namespace EbookShop.DataAccess
 {
-    public class EbookShopContext : DbContext
+    public class EbookShopContext : IdentityDbContext<AppUser>
     {
         
 
@@ -25,6 +24,7 @@ namespace Core.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             // define composite key for the junction table 
             modelBuilder.Entity<AuthorEbooks>()
                 .HasKey(ae => new { ae.AuthorId, ae.EbookId });
