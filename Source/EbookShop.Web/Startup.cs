@@ -6,13 +6,14 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using Core.Context;
-namespace EbookShop
+using EbookShop.DataAccess;
+using AutoMapper;
+namespace EbookShop.Web
 {
     public class Startup
     {
 
-        private const string ConnectionString = "Server=.\\SQLEXPRESS;Database=EbookShopDB;Trusted_Connection=True;";
+        private const string ConnectionString = @"Data Source=localhost\SQLExpress;Initial Catalog=EbookShopDb;Integrated Security=True;Pooling=False";
   
         
         public Startup(IConfiguration configuration)
@@ -25,10 +26,12 @@ namespace EbookShop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Configure DB Context. Add EbookShop context to dependency injection container and set database provider and also connection string. 
-            services.AddDbContext<EbookShopContext>(options=>options.UseSqlServer(ConnectionString, b => b.MigrationsAssembly("EbookShop")));
+            services.AddDbContext<EbookShopContext>(options=>options.UseSqlServer(ConnectionString));
+          
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
