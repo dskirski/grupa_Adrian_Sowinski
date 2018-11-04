@@ -29,6 +29,11 @@
   <ItemGroup>
     <ProjectReference Include="..\EbookShop.DataAccess\EbookShop.DataAccess.csproj" />
     <ProjectReference Include="..\EbookShop.Models\EbookShop.Models.csproj" />
+    <ProjectReference Include="..\EbookShop.Services\EbookShop.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
