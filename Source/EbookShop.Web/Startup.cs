@@ -8,6 +8,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using EbookShop.DataAccess;
 using AutoMapper;
+using EbookShop.Models;
+using Microsoft.AspNetCore.Identity;
+using EbookShop.Services.Mapping;
+using EbookShop.Services;
+
 namespace EbookShop.Web
 {
     public class Startup
@@ -26,18 +31,25 @@ namespace EbookShop.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper();
+            services.AddAutoMapper(x=> x.AddProfile<MappingProfile>());
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Configure DB Context. Add EbookShop context to dependency injection container and set database provider and also connection string. 
             services.AddDbContext<EbookShopContext>(options=>options.UseSqlServer(ConnectionString));
-          
+
+            services.AddIdentity<AppUser, IdentityRole>()
+                .AddEntityFrameworkStores<EbookShopContext>()
+                .AddDefaultTokenProviders();
+                
+
+            services.AddTransient<IRegistrationService, RegistrationService>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,7 +68,7 @@ namespace EbookShop.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-
+     
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -76,6 +88,7 @@ namespace EbookShop.Web
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
         }
     }
 }
