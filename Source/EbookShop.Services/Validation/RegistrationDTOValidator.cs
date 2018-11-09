@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using EbookShop.Services.Dtos;
 using FluentValidation;
 
@@ -10,10 +8,14 @@ namespace EbookShop.Services.Validation
     {
         public RegistrationDTOValidator()
         {
-            RuleFor(rdto => rdto.Email).Empty(); 
-            RuleFor(rdto => rdto.Password).Empty();
-            RuleFor(rdto => rdto.FirstName).Empty();
-            RuleFor(rdto => rdto.LastName).Empty();
+            RuleFor(rdto => rdto.Email).NotEmpty().EmailAddress();
+            RuleFor(rdto => rdto.Password).NotEmpty().Password();
+            RuleFor(rdto => rdto.ConfirmPassword)
+                .NotEmpty()
+                .Equal(rdto => rdto.Password)
+                .WithMessage(ErrorMessages.PasswordsDoNotMatch);
+            RuleFor(rdto => rdto.FirstName).NotEmpty().Length(1, 100);
+            RuleFor(rdto => rdto.LastName).NotEmpty().Length(1,100);
         }
     }
 }

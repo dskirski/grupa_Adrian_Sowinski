@@ -25,8 +25,8 @@ namespace EbookShop.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegistrationDTO registrationDto)
         {
-            //Validation of the model is done by using the ApiController tag. 
-            // To do: add validation tags to DTO object? 
+            //Validation of the model is done by using the ApiController tag.
+            
 
             // Catch exception thrown by registration service. 
             try
