@@ -40,10 +40,11 @@ namespace EbookShop.Web
             services.AddAutoMapper(x=> x.AddProfile<MappingProfile>());
             // configure fluent validation
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddFluentValidation();
-            
-            // Configure DB Context. Add EbookShop context to dependency injection container and set database provider and also connection string. 
-            services.AddDbContext<EbookShopContext>(options=>options.UseSqlServer(ConnectionString));
 
+            // Configure DB Context. Add EbookShop context to dependency injection container and set database provider and also connection string. 
+            services.AddDbContext<EbookShopContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalDb")));
+            
+            
             services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<EbookShopContext>()
                 .AddDefaultTokenProviders();
