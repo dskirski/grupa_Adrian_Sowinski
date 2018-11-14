@@ -9,11 +9,12 @@ using EbookShop.Services.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using EbookShop.Services.Helpers;
+using System.Security.Claims;
 
 namespace EbookShop.Services
 {
   
-    public class RegistrationService : IRegistrationService 
+    public class RegistrationService : IRegistrationService
     {
 
         private readonly IMapper _mapper;
@@ -26,28 +27,31 @@ namespace EbookShop.Services
             _context = context;
             _userManager = userManager;
         }
-
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="regDTO">Registration data transfer object</param>
-        
-        public async Task RegisterWithStandardEmailAsync(RegistrationDTO regDTO)
+        /// <param name="registrationDTO">Registration data transfer object</param>
+        /// <returns>Created user id.</returns>
+
+        public async Task<string> RegisterAsync(RegistrationDTO registrationDTO)
         {
             // map dto to AppUser class
-            var user = _mapper.Map<AppUser>(regDTO);
+            var user = _mapper.Map<AppUser>(registrationDTO);
 
             // Try to create the new user
-            var result = await _userManager.CreateAsync(user, regDTO.Password);
+            var result = await _userManager.CreateAsync(user, registrationDTO.Password);
             // If it fails throw an exception
             if (!result.Succeeded)
                 throw new InvalidOperationException(result.ErrorMessage());
-                
+            var customer = new Customer { IdentityId = user.Id };
+
             // Add new user to customers table with the identity id assigned. 
-            await _context.Customers.AddAsync(new Customer { IdentityId = user.Id });
+            await _context.Customers.AddAsync(customer);
             // Commit changes to database
             await _context.SaveChangesAsync();
-        
+            return customer.IdentityId;
+            
         }
+
     }
 }
