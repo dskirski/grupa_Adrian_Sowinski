@@ -13,33 +13,27 @@ namespace EbookShop.Web.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountsController : ControllerBase
+    public class RegisterController : ControllerBase
     {
-        private readonly IRegistrationService _registrationService;
-
-        public AccountsController(IRegistrationService registrationService)
-        {
-            _registrationService = registrationService;
-        }
-
         [HttpPost]
-        public async Task<IActionResult> Register(RegistrationDTO registrationDto)
+        public async Task<IActionResult> Post(RegistrationDTO registrationDto, [FromServices] IRegistrationService registrationService)
         {
             //Validation of the model is done by using the ApiController tag.
-            
-
             // Catch exception thrown by registration service. 
             try
             {
-             await _registrationService.RegisterWithStandardEmailAsync(registrationDto);
+                var token = await registrationService.RegisterAsync(registrationDto);
+                return Created("default", token);
             }
             catch (InvalidOperationException e)
             {
                 // Return 400 status code with error message
                 return BadRequest(e.Message);
             }
-            //To do: Return 201 status code with the link to the account profile.
-            return Ok("Account created.");  
+         
         }
+      
+
+
     }
 }
