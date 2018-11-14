@@ -35,6 +35,6 @@ namespace EbookShop.Services.Validation
         public static string PasswordLength(int length)
             => $"Password must be at least {length} characters long";
         public static readonly string PasswordsDoNotMatch = "Passwords do not match";
-
+        public static readonly string UsernameOrPasswordIncorrect = "Username or password is incorrect"; 
     }
 }
