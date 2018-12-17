@@ -1,0 +1,40 @@
+#footer {
+  font-size: .8em;
+  padding: 30px 20px 50px;
+  clear: both;
+  color: #b2b5b9;
+  background: #1e1e1e;
+  margin-top: 35px;
+  padding-bottom: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+  text-align: center !important;
+}
+
+
+
+#row {
+  margin-left : 50px;
+  content: "";
+  display: table;
+  clear: both;
+  text-align: center !important;
+}
+#grid .one-half, #grid .one-third, #grid .one-fourth, #grid .one-fifth {
+  margin-right: 2px;
+  margin-top: 2px;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+}
+
+.one, .one-half, .two-third, .one-third, .one-fourth, .one-fifth, .one-sixth, .inner-content, .one-third-big {
+  float: left;
+}
+.one-fourth {
+  min-height: 120px;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 24.99999% ;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
