@@ -1,0 +1,33 @@
+.tab-nav > .tab-label {
+  float: left;
+}
+
+  .aside-nav li a {
+    text-align: center;
+  }
+
+  .minimize-on-small .aside-nav-text {
+    background: #152732 none repeat scroll 0 0;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 1.2rem;
+    line-height: 3;
+    max-width: 100%;
+    padding-right: 0.625rem;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .aside-nav-text:after {
+    content: "\f008";
+    font-family: "mfg";
+    font-size: 1.1rem;
+    margin-left: 0.5rem;
+    text-align: right;
+  }
+
+  .aside-nav.minimize-on-small > ul {
+    height: 0;
+    overflow: hidden;
+  }
