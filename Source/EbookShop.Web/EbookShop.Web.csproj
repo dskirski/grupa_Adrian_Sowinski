@@ -45,9 +45,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\display-ebook\display-ebook.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EbookShop.DataAccess\EbookShop.DataAccess.csproj" />
     <ProjectReference Include="..\EbookShop.Models\EbookShop.Models.csproj" />
     <ProjectReference Include="..\EbookShop.Services\EbookShop.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\display-ebook\display-ebook.component.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
