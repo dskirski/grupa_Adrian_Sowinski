@@ -2716,3 +2716,15 @@ a .tooltip-content, .tooltip-content {
   .button:hover > i {
     background: rgba(0, 0, 0, 0.06) none repeat scroll 0 0;
   }
+
+.ngx-pagination {
+  height: auto;
+}
+
+.pagination-previous {
+  font-size: larger;
+}
+
+.pagination-next {
+  font-size:larger;
+}
