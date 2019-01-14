@@ -6,11 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using EbookShop.DataAccess;
+using EbookShop.Models;
 using EbookShop.Services.Dtos;
 using EbookShop.Services.Helpers;
 using EbookShop.Services.Validation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Html;
+using System.IO;
+using Newtonsoft.Json.Serialization;
 
 namespace EbookShop.Services
 {
