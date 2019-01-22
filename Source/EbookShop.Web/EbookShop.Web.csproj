@@ -58,6 +58,10 @@
     <TypeScriptCompile Include="ClientApp\src\app\display-ebook\display-ebook.component.ts" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\dashboard\" />
+  </ItemGroup>
+
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">
@@ -83,11 +87,6 @@
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </ResolvedFileToPublish>
     </ItemGroup>
-  </Target>
-
-  <Target Name="NSwag" AfterTargets="Build">
-    <Exec Command="$(NSwagExe_Core21) aspnetcore2swagger /assembly:$(OutDir)/EbookShop.dll /output:swagger.json /UseHttpRequestMessageCreationMethod:true" />
-    <Exec Command="$(NSwagExe_Core21) swagger2tsclient /input:swagger.json /output:ClientApp/src/clients.generated.ts" />
   </Target>
 
 </Project>
