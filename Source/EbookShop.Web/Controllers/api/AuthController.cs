@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EbookShop.Web.Controllers.api
 {
-    [Route("api/[controller]")]
+    [Route("api/login")]
     [ApiController]
     public class AuthController : ControllerBase
     {
