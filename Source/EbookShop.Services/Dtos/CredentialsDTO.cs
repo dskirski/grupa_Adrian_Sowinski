@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EbookShop.Services.Dtos
 {
-   public  class CredentialsDTO
+   public  class CredentialsDto
     {
         public string UserName { get; set; }
         public string Password { get; set; }

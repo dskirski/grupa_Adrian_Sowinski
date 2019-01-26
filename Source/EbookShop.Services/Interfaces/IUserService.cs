@@ -7,6 +7,6 @@ namespace EbookShop.Services
 {
     public interface IUserService
     {
-        Task<DashboardDTO> IsValidUserHTTP();
+        Task<DashboardDto> IsValidUserHTTP();
     }
 }

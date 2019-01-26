@@ -29,7 +29,7 @@ namespace EbookShop.Services
         /// </summary>
         /// <param name="credentials"></param>
         /// <returns></returns>
-        public async Task<string> Authenticate(CredentialsDTO credentials)
+        public async Task<string> Authenticate(CredentialsDto credentials)
         {
             //Validate credentials and generate user identity
             ClaimsIdentity identity = null; 

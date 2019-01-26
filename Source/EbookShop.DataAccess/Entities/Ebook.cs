@@ -21,13 +21,13 @@ namespace EbookShop.Models
         public decimal Price { get; set; }
 
 
+
         #region navigation properties
 
         public virtual ICollection<FilePath> Files { get; set; }
    
-        public virtual ICollection<AuthorEbooks> AuthorEbooks { get; set; }
-
-        public virtual ICollection<EbookCategories> EbookCategories { get; set; }
+        public virtual ICollection<EbookAuthor> Authors { get; set; }
+        public virtual ICollection<EbookGenre> Genres { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
         #endregion

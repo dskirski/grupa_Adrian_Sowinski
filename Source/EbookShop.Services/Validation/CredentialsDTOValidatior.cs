@@ -6,7 +6,7 @@ using FluentValidation;
 
 namespace EbookShop.Services.Validation
 {
-    public class CredentialsDTOValidatior : AbstractValidator<CredentialsDTO>
+    public class CredentialsDTOValidatior : AbstractValidator<CredentialsDto>
     {
         public CredentialsDTOValidatior()
         {

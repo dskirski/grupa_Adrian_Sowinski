@@ -16,7 +16,7 @@ namespace EbookShop.Web.Controllers
     public class RegisterController : ControllerBase
     {
         [HttpPost]
-        public async Task<IActionResult> Post(RegistrationDTO registrationDto, [FromServices] IRegistrationService registrationService)
+        public async Task<IActionResult> Post(RegistrationDto registrationDto, [FromServices] IRegistrationService registrationService)
         {
             //Validation of the model is done by using the ApiController tag.
             // Catch exception thrown by registration service. 
@@ -32,8 +32,5 @@ namespace EbookShop.Web.Controllers
             }
          
         }
-      
-
-
     }
 }

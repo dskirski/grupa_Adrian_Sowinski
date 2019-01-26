@@ -8,11 +8,13 @@ namespace EbookShop.Services.Mapping
         public MappingProfile()
         {
 
-            CreateMap<RegistrationDTO,AppUser>()
+            CreateMap<RegistrationDto,AppUser>()
                 .ForMember(au=> au.UserName,map => map.MapFrom(vm=>vm.Email));
 
-            CreateMap<AppUser, DashboardDTO>(); 
-           
+            CreateMap<AppUser, DashboardDto>();
+
+            CreateMap<EbookDto, Ebook>();
+            CreateMap<Ebook, EbookDto>(); 
         }
     }
 }

@@ -11,7 +11,7 @@ namespace EbookShop.Web.Controllers.api
     public class AuthController : ControllerBase
     {
         [HttpPost]
-        public async Task<IActionResult> Login(CredentialsDTO credentialsDto, [FromServices]IAuthenticationService authenticationService)
+        public async Task<IActionResult> Login(CredentialsDto credentialsDto, [FromServices]IAuthenticationService authenticationService)
         {
             try
             {

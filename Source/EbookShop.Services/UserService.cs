@@ -34,7 +34,7 @@ namespace EbookShop.Services
         }
 
 
-        public async Task<DashboardDTO> IsValidUserHTTP()
+        public async Task<DashboardDto> IsValidUserHTTP()
         {
             // user id claim
             var userId = _caller.Claims.Single(c => c.Type == Constants.Strings.JwtClaimIdentifiers.Id);
@@ -44,7 +44,7 @@ namespace EbookShop.Services
                 .SingleAsync(c => c.Identity.Id == userId.Value);
             if (customer == null) throw new InvalidOperationException(ErrorMessages.UserNotFound);
 
-            var user = _mapper.Map<DashboardDTO>(customer.Identity);
+            var user = _mapper.Map<DashboardDto>(customer.Identity);
             return user;
         }
     }

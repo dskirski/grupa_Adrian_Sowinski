@@ -68,14 +68,13 @@ namespace EbookShop.DataAccess.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    CategoryId = table.Column<int>(nullable: false)
+                    GenreId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CategoryName = table.Column<string>(maxLength: 30, nullable: false),
-                    Description = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.CategoryId);
+                    table.PrimaryKey("PK_Categories", x => x.GenreId);
                 });
 
             migrationBuilder.CreateTable(
@@ -220,7 +219,7 @@ namespace EbookShop.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AuthorEbooks",
+                name: "EbookAuthors",
                 columns: table => new
                 {
                     AuthorId = table.Column<int>(nullable: false),
@@ -228,15 +227,15 @@ namespace EbookShop.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AuthorEbooks", x => new { x.AuthorId, x.EbookId });
+                    table.PrimaryKey("PK_EbookAuthors", x => new { x.AuthorId, x.EbookId });
                     table.ForeignKey(
-                        name: "FK_AuthorEbooks_Authors_AuthorId",
+                        name: "FK_EbookAuthors_Authors_AuthorId",
                         column: x => x.AuthorId,
                         principalTable: "Authors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AuthorEbooks_Ebooks_EbookId",
+                        name: "FK_EbookAuthors_Ebooks_EbookId",
                         column: x => x.EbookId,
                         principalTable: "Ebooks",
                         principalColumn: "EbookId",
@@ -244,26 +243,26 @@ namespace EbookShop.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EbookCategories",
+                name: "EbookGenres",
                 columns: table => new
                 {
                     EbookId = table.Column<int>(nullable: false),
-                    CategoryId = table.Column<int>(nullable: false)
+                    GenreId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EbookCategories", x => new { x.CategoryId, x.EbookId });
+                    table.PrimaryKey("PK_EbookGenres", x => new { x.EbookId, x.GenreId });
                     table.ForeignKey(
-                        name: "FK_EbookCategories_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "CategoryId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_EbookCategories_Ebooks_EbookId",
+                        name: "FK_EbookGenres_Ebooks_EbookId",
                         column: x => x.EbookId,
                         principalTable: "Ebooks",
                         principalColumn: "EbookId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EbookGenres_Categories_GenreId",
+                        column: x => x.GenreId,
+                        principalTable: "Categories",
+                        principalColumn: "GenreId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -356,19 +355,19 @@ namespace EbookShop.DataAccess.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AuthorEbooks_EbookId",
-                table: "AuthorEbooks",
-                column: "EbookId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Customers_IdentityId",
                 table: "Customers",
                 column: "IdentityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EbookCategories_EbookId",
-                table: "EbookCategories",
+                name: "IX_EbookAuthors_EbookId",
+                table: "EbookAuthors",
                 column: "EbookId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EbookGenres_GenreId",
+                table: "EbookGenres",
+                column: "GenreId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Files_EbookId",
@@ -404,10 +403,10 @@ namespace EbookShop.DataAccess.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "AuthorEbooks");
+                name: "EbookAuthors");
 
             migrationBuilder.DropTable(
-                name: "EbookCategories");
+                name: "EbookGenres");
 
             migrationBuilder.DropTable(
                 name: "Files");

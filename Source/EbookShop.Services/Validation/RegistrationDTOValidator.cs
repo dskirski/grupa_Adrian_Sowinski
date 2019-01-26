@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace EbookShop.Services.Validation
 {
-    public class RegistrationDTOValidator : AbstractValidator<RegistrationDTO>
+    public class RegistrationDTOValidator : AbstractValidator<RegistrationDto>
     {
         public RegistrationDTOValidator()
         {

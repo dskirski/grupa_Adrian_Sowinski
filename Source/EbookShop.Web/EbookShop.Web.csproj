@@ -21,11 +21,6 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="NSwag.AspNetCore" Version="11.20.1" />
-    <PackageReference Include="NSwag.MSBuild" Version="11.20.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
@@ -50,7 +45,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EbookShop.DataAccess\EbookShop.DataAccess.csproj" />
-    <ProjectReference Include="..\EbookShop.Models\EbookShop.Models.csproj" />
     <ProjectReference Include="..\EbookShop.Services\EbookShop.Services.csproj" />
   </ItemGroup>
 
@@ -85,9 +79,6 @@
     </ItemGroup>
   </Target>
 
-  <Target Name="NSwag" AfterTargets="Build">
-    <Exec Command="$(NSwagExe_Core21) aspnetcore2swagger /assembly:$(OutDir)/EbookShop.dll /output:swagger.json /UseHttpRequestMessageCreationMethod:true" />
-    <Exec Command="$(NSwagExe_Core21) swagger2tsclient /input:swagger.json /output:ClientApp/src/clients.generated.ts" />
-  </Target>
+
 
 </Project>
