@@ -4,8 +4,8 @@ using System.Text;
 
 namespace EbookShop.Models
 {
-   
-   public class AuthorEbooks
+    
+   public class EbookAuthor
     {
         public int AuthorId { get; set; }
         public Author Author { get; set; }

@@ -8,6 +8,6 @@ namespace EbookShop.Services
 {
     public interface IAuthenticationService
     {
-        Task<string> Authenticate(CredentialsDTO credentialsDTO);
+        Task<string> Authenticate(CredentialsDto credentialsDTO);
     }
 }

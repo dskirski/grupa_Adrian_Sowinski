@@ -5,7 +5,7 @@ namespace EbookShop.Services
 {
     public interface IRegistrationService
     {
-        Task<string> RegisterAsync(RegistrationDTO registrationDTO);
+        Task<string> RegisterAsync(RegistrationDto registrationDTO);
 
     }
 }

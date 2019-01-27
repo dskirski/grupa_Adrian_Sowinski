@@ -33,7 +33,7 @@ namespace EbookShop.Services
         /// <param name="registrationDTO">Registration data transfer object</param>
         /// <returns>Created user id.</returns>
 
-        public async Task<string> RegisterAsync(RegistrationDTO registrationDTO)
+        public async Task<string> RegisterAsync(RegistrationDto registrationDTO)
         {
             // map dto to AppUser class
             var user = _mapper.Map<AppUser>(registrationDTO);

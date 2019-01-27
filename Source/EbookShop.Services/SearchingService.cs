@@ -53,7 +53,7 @@ namespace EbookShop.Services
         }
 
         //Zwraca tablicę ebooków danej kategorii
-        public Ebook[] SearchEbooksByCategory(Category category)
+        public Ebook[] SearchEbooksByCategory(Genre category)
         {
             Ebook[] returnValue = context.Ebooks.Where(
                 (e) =>
@@ -64,10 +64,10 @@ namespace EbookShop.Services
         }
 
         //Sprawdza czy ebook jest danej kategorii
-        private bool DoesEbookContainCategory(Ebook e, Category category)
+        private bool DoesEbookContainCategory(Ebook e, Genre category)
         {
-            foreach (EbookCategories ebookCategories in e.EbookCategories)
-                return ebookCategories.Category == category;
+            foreach (EbookGenre ebookCategories in e.EbookGenres)
+                return ebookCategories.Genre == category;
 
             return false;
         }
@@ -75,8 +75,8 @@ namespace EbookShop.Services
         //Sprawdza czy dana fraza zawiera się w nazwie kategorii ebooka
         private bool DoesEbookContainCategory(Ebook e, string category)
         {
-            foreach (EbookCategories ebookCategories in e.EbookCategories)
-                return ebookCategories.Category.CategoryName.Contains(category);
+            foreach (EbookGenre ebookCategories in e.EbookGenres)
+                return ebookCategories.Genre.Name.Contains(category);
 
             return false;
         }
@@ -95,7 +95,7 @@ namespace EbookShop.Services
         //Sprawdza czy dany autor jest autorem danego ebooka
         private bool DoesEbookContainAuthor(Ebook e, Author author)
         {
-            foreach (AuthorEbooks ebookCategories in e.AuthorEbooks)
+            foreach (EbookAuthor ebookCategories in e.EbookAuthors)
                 return ebookCategories.Author == author;
 
             return false;
@@ -104,7 +104,7 @@ namespace EbookShop.Services
         //Sprawdza czy dana fraza zawiera się w imieniu bądź nazwisku autora
         private bool DoesEbookContainAuthor(Ebook e, string author)
         {
-            foreach (AuthorEbooks ebookCategories in e.AuthorEbooks)
+            foreach (EbookAuthor ebookCategories in e.EbookAuthors)
                 return ebookCategories.Author.FirstName.Contains(author) || ebookCategories.Author.LastName.Contains(author);
 
             return false;

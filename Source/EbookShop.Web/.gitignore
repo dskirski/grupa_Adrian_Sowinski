@@ -231,3 +231,8 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+#Ignore log files
+#internal-nlog.txt
+#nlog-all-*
+#nlog-own-*
