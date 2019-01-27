@@ -6,6 +6,11 @@ namespace EbookShop.Services.Dtos
 {
    public  class EbookDto
     {
+        public EbookDto()
+        {
+            Authors = new List<AuthorDto>();
+            Genres = new List<GenreDto>(); 
+        }
         public int EbookId { get; set; }
 
         public string Title { get; set; }
@@ -15,5 +20,8 @@ namespace EbookShop.Services.Dtos
         public string Description { get; set; }
 
         public decimal Price { get; set; }
+
+        public ICollection<AuthorDto> Authors { get; set; }
+        public ICollection<GenreDto> Genres { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace EbookShop.Models
         [StringLength(30)]
         public string Name { get; set; }
 
-        public virtual ICollection<EbookGenre> Ebooks { get; set; }
+        public virtual ICollection<EbookGenre> EbookGenres { get; set; }
     }
 
 

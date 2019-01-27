@@ -22,6 +22,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using MediatR;
+using System.Reflection;
+using EbookShop.Services.Infrastructure;
+using MediatR.Pipeline;
 
 namespace EbookShop.Web
 {
@@ -57,6 +61,20 @@ namespace EbookShop.Web
             services.AddScoped<IRegistrationService, RegistrationService>();
             services.AddSingleton<IJwtFactory, JwtFactory>();
             services.AddScoped<IAuthenticationService, AuthAuthenticationService>();
+
+            // Add MediatR
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
+            // Does RequestLogger : IRequestPreProcessor is auto registered via assembly scan? 
+            // {\__ /}
+            //  (●_●)
+            //  ( >🌮 Want a taco?
+            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPreProcessorBehavior<,>));
+            // well yes, it works auto-magically for all Requests and : 
+                //typeof(INotificationHandler<>),
+                //typeof(IRequestPreProcessor<>),
+                //typeof(IRequestPostProcessor<,>)
+            services.AddMediatR(typeof(UserService).GetTypeInfo().Assembly);
+
             // Register validators
             services.AddScoped<IValidator<RegistrationDto>, RegistrationDTOValidator>();
             services.AddHttpContextAccessor();

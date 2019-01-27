@@ -26,8 +26,8 @@ namespace EbookShop.Models
 
         public virtual ICollection<FilePath> Files { get; set; }
    
-        public virtual ICollection<EbookAuthor> Authors { get; set; }
-        public virtual ICollection<EbookGenre> Genres { get; set; }
+        public virtual ICollection<EbookAuthor> EbookAuthors { get; set; }
+        public virtual ICollection<EbookGenre> EbookGenres { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
         #endregion

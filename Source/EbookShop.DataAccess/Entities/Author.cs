@@ -15,7 +15,7 @@ namespace EbookShop.Models
         public string LastName { get; set; }
 
 
-        public virtual ICollection<EbookAuthor> Ebooks { get; set; }
+        public virtual ICollection<EbookAuthor> EbookAuthors { get; set; }
 
     }
 }

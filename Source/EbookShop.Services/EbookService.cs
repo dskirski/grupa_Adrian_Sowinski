@@ -116,7 +116,7 @@ namespace EbookShop.Services
         //Sprawdza czy dany autor jest autorem danego ebooka
         private bool DoesEbookContainAuthor(Ebook e, Author author)
         {
-            foreach (EbookAuthor ebookCategories in e.Authors)
+            foreach (EbookAuthor ebookCategories in e.EbookAuthors)
                 return ebookCategories.Author == author;
 
             return false;
@@ -125,7 +125,7 @@ namespace EbookShop.Services
         //Sprawdza czy dana fraza zawiera się w imieniu bądź nazwisku autora
         private bool DoesEbookContainAuthor(Ebook e, string author)
         {
-            foreach (EbookAuthor ebookCategories in e.Authors)
+            foreach (EbookAuthor ebookCategories in e.EbookAuthors)
                 return ebookCategories.Author.FirstName.Contains(author) || ebookCategories.Author.LastName.Contains(author);
 
             return false;
