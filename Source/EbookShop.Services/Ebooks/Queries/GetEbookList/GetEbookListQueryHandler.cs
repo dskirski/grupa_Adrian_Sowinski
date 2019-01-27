@@ -11,20 +11,20 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper.QueryableExtensions;
 using EbookShop.Models;
 
-namespace EbookShop.Services.Ebooks.Queries.GetEbooksList
+namespace EbookShop.Services.Ebooks.Queries.GetEbookList
 {
-    public class GetEbooksListQueryHandler : IRequestHandler<GetEbooksListQuery, List<EbookDto>>
+    public class GetEbookListQueryHandler : IRequestHandler<GetEbookListQuery, List<EbookDto>>
     {
         private readonly EbookShopContext context;
         private readonly IMapper mapper;
 
-        public GetEbooksListQueryHandler(EbookShopContext context, IMapper mapper)
+        public GetEbookListQueryHandler(EbookShopContext context, IMapper mapper)
         {
             this.context = context;
             this.mapper = mapper;
         }
 
-        public Task<List<EbookDto>> Handle(GetEbooksListQuery request, CancellationToken cancellationToken)
+        public Task<List<EbookDto>> Handle(GetEbookListQuery request, CancellationToken cancellationToken)
         {
             var ebooksQuery = (request.Filter != null) ? context.Ebooks.Where(request.Filter) :
                 context.Ebooks.AsQueryable();

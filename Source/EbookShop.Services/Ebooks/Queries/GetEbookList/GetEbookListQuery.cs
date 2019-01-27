@@ -5,9 +5,9 @@ using System.Text;
 using EbookShop.Models;
 using EbookShop.Services.Dtos;
 using MediatR;
-namespace EbookShop.Services.Ebooks.Queries.GetEbooksList
+namespace EbookShop.Services.Ebooks.Queries.GetEbookList
 {
-    public class GetEbooksListQuery : IRequest<List<EbookDto>>
+    public class GetEbookListQuery : IRequest<List<EbookDto>>
     {
         public Expression<Func<Ebook, bool>> Filter { get; set; }
     }

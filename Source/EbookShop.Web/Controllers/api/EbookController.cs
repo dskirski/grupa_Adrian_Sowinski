@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EbookShop.Services.Dtos;
-using EbookShop.Services.Ebooks.Queries.GetEbooksList;
+using EbookShop.Services.Ebooks.Queries.GetEbookList;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,19 +25,17 @@ namespace EbookShop.Web.Controllers.api
         [HttpGet]
         public async Task<IActionResult>Get(string term)
         {
-
-
             var result = (term != null) ?
-                await _mediator.Send(new GetEbooksListQuery()
+                await _mediator.Send(new GetEbookListQuery()
                 {
                     Filter = x => x.Title.IndexOf(term,StringComparison.OrdinalIgnoreCase) >= 0
                 })
                 :
-                await _mediator.Send(new GetEbooksListQuery());
+                await _mediator.Send(new GetEbookListQuery());
             
             return Ok(result); 
         }
-
+        #region TODO
         // GET: api/Ebook/5
         [HttpGet("{id}", Name = "Get")]
         public string Get(int id)
@@ -62,5 +60,6 @@ namespace EbookShop.Web.Controllers.api
         public void Delete(int id)
         {
         }
+        #endregion
     }
 }

@@ -13,6 +13,9 @@ namespace EbookShop.Services.Mapping
 
             CreateMap<AppUser, DashboardDto>();
 
+            CreateMap<FileDto, FilePath>();
+            CreateMap<FilePath, FileDto>();
+                
 
             CreateMap<AuthorDto, Author>();
             CreateMap<Author, AuthorDto>();
@@ -20,22 +23,25 @@ namespace EbookShop.Services.Mapping
             CreateMap<GenreDto, Genre>();
             CreateMap<Genre, GenreDto>();
             //Enable mapping from EbookGenre to GenreDto
-            var ebookGenreToGenreDto = CreateMap<EbookGenre, GenreDto>()
+            CreateMap<EbookGenre, GenreDto>()
                .ForMember(dest => dest.Name, opts => opts.MapFrom(
                    src => src.Genre.Name));
             //Enable mapping from EbookAuthor to AuthorDto
-            var ebookAuthorToAuthorDto = CreateMap<EbookAuthor, AuthorDto>()
+            CreateMap<EbookAuthor, AuthorDto>()
                  .ForMember(dest => dest.FirstName, opts => opts.MapFrom(
                       src => src.Author.FirstName))
                  .ForMember(dest => dest.LastName, opts => opts.MapFrom(
                      src => src.Author.LastName));
-            // Map diffrent collection names
+            // Map diffrent property names
             CreateMap<EbookDto, Ebook>();
             CreateMap<Ebook, EbookDto>()
                 .ForMember(dest => dest.Genres, opts => opts.MapFrom(
                     src => src.EbookGenres))
                 .ForMember(dest => dest.Authors, opts => opts.MapFrom(
-                    src => src.EbookAuthors));
+                    src => src.EbookAuthors))
+                .ForMember(dest => dest.Files, opts => opts.MapFrom(
+                    src=> src.Files));
+
         }
     }
 }

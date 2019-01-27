@@ -20,8 +20,8 @@ namespace EbookShop.Services.Dtos
         public string Description { get; set; }
 
         public decimal Price { get; set; }
-
         public ICollection<AuthorDto> Authors { get; set; }
         public ICollection<GenreDto> Genres { get; set; }
+        public ICollection<FileDto> Files { get; set; }
     }
 }

@@ -20,12 +20,13 @@ namespace EbookShop.DataAccess
         public static void Initialize(EbookShopContext context,
             IHostingEnvironment hostingEnvironment)
         {
-            var root = Path.GetFullPath(@"../", hostingEnvironment.ContentRootPath);
-            var imgStorage = Path.Combine(root, "Resources\\FileStorage\\img");
+            var root = hostingEnvironment.WebRootPath;
+            var imgStorage = Path.Combine(root, "images");
             var exists = Directory.Exists(imgStorage);
             if (!exists) Debug.Fail($"Directory {imgStorage} does not exists");
+            var relative = "images";
             var initializer = new EbookShopInitializer();
-            Initialize(context, imgStorage, null);
+            Initialize(context, relative, null);
 
 
         }
@@ -291,35 +292,35 @@ namespace EbookShop.DataAccess
                        {
                            FileName = "czas-przeszly.jpg",
                            FileType = FileType.EBOOK_COVER,
-                           Path = Path.Combine(this.EbookImagesDirectory, "czas-przeszly.jpg"),
+                           Path = Combine(this.EbookImagesDirectory, "czas-przeszly.jpg"),
                            EbookId = 1
                        },
                  new FilePath()
                  {
                      FileName = "zamiana.jpg",
                      FileType = FileType.EBOOK_COVER,
-                     Path = Path.Combine(this.EbookImagesDirectory,"zamiana.jpg"),
+                     Path = Combine(this.EbookImagesDirectory,"zamiana.jpg"),
                      EbookId = 2
                  },
                  new FilePath()
                  {
                      FileName = "uniwersum-metro-2033.jpg",
                      FileType = FileType.EBOOK_COVER,
-                     Path = Path.Combine(this.EbookImagesDirectory,"uniwersum-metro-2033.jpg"),
+                     Path = Combine(this.EbookImagesDirectory,"uniwersum-metro-2033.jpg"),
                      EbookId = 3
                  },
                  new FilePath()
                  {
                      FileName = "gdzie-jest-prezydent.jpg",
                      FileType = FileType.EBOOK_COVER,
-                     Path = Path.Combine(this.EbookImagesDirectory, "gdzie-jest-prezydent.jpg"),
+                     Path = Combine(this.EbookImagesDirectory, "gdzie-jest-prezydent.jpg"),
                      EbookId = 4
                  },
                  new FilePath()
                  {
                      FileName = "outsider.jpg",
                      FileType = FileType.EBOOK_COVER,
-                     Path = Path.Combine(this.EbookImagesDirectory,"outsider.jpg"),
+                     Path = Combine(this.EbookImagesDirectory,"outsider.jpg"),
                      EbookId = 5
                  }
             };
@@ -327,6 +328,6 @@ namespace EbookShop.DataAccess
             context.SaveChanges(); 
         }
 
-
+        private string Combine(string folder, string file) => folder +"/"+ file;
     }
 }
