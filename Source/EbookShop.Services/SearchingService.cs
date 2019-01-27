@@ -21,11 +21,11 @@ namespace EbookShop.Services
         }
 
         //Zwraca tablicę ebooków, w których tytule/nazwie kategorii/nazwie autora zawiera się dana fraza.
-        public Ebook[] GetEbooksByTextInAnyProperty(string text)
+        public Ebook[] SearchEbooksByAnyProperty(string text)
         {
             List<Ebook> returnValue = new List<Ebook>();
 
-            Ebook[] temp = GetEbooksByTitle(text);
+            Ebook[] temp = SearchEbooksByTitle(text);
             returnValue.AddRange(temp);
 
             temp = context.Ebooks.Where(
@@ -44,32 +44,8 @@ namespace EbookShop.Services
             return returnValue.ToArray();
         }
 
-
-        public string GetEbooksByTextInAnyProperty_JSON(string text)
-        {
-            Ebook[] arr = GetEbooksByTextInAnyProperty(text);
-            return JsonConvert.SerializeObject(arr);
-        }
-
-        public HtmlString GetEbooksByTextInAnyProperty_HtmlString(string text)
-        {
-            Ebook[] arr = GetEbooksByTextInAnyProperty(text);
-
-            using (StringWriter stringWriter = new StringWriter())
-            using (JsonTextWriter jsonWriter = new JsonTextWriter(stringWriter))
-            {
-                JsonSerializer serializer = new JsonSerializer
-                {
-                    ContractResolver = new CamelCasePropertyNamesContractResolver()
-                };
-                serializer.Serialize(jsonWriter, arr);
-
-                return new HtmlString(stringWriter.ToString());
-            }
-        }
-
         //Zwraca tablicę z ebookami, w których tytule zawiera się podana fraza
-        public Ebook[] GetEbooksByTitle(string title)
+        public Ebook[] SearchEbooksByTitle(string title)
         {
             Ebook[] returnValue = context.Ebooks.Where(e => e.Title.Contains(title)).ToArray();
 
@@ -77,7 +53,7 @@ namespace EbookShop.Services
         }
 
         //Zwraca tablicę ebooków danej kategorii
-        public Ebook[] GetEbooksByCategory(Category category)
+        public Ebook[] SearchEbooksByCategory(Category category)
         {
             Ebook[] returnValue = context.Ebooks.Where(
                 (e) =>
@@ -106,7 +82,7 @@ namespace EbookShop.Services
         }
 
         //Zwraca tablicę ebooków z danym autorem
-        public Ebook[] GetEbooksByAuthor(Author author)
+        public Ebook[] SearchEbooksByAuthor(Author author)
         {
             Ebook[] returnValue = context.Ebooks.Where(
                 (e) =>
