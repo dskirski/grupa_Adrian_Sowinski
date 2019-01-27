@@ -11,7 +11,7 @@ using System.Net;
 namespace EbookShop.Web.Controllers
 {
 
-    [Route("api/[controller]")]
+    [Route("api/register")]
     [ApiController]
     public class RegisterController : ControllerBase
     {

@@ -26,7 +26,13 @@
       <p class="nav-text">Main navigation</p>
       <div class="top-nav">
         <ul class="right">
-          <li><a>Zaloguj</a></li>
+          <li>
+            <a *ngIf="isLoggedIn()" [routerLink]='[""]' (click)='logOut()'>Wyloguj</a>
+            <a *ngIf="!isLoggedIn()" [routerLink]='["/login"]' (click)='collapse()'>Logowanie</a>
+          </li>
+          <li *ngIf="!isLoggedIn()">
+            <a [routerLink]='["/register"]' (click)='collapse()'>Rejestracja</a>
+          </li>
           <li>
             <a>Moje pozycje</a>
           </li>
