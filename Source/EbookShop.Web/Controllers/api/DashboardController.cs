@@ -11,7 +11,7 @@ namespace EbookShop.Web.Controllers.api
     
     
     [Authorize("ApiUser")]
-    [Route("api/[controller]")]
+    [Route("api/dashboard")]
     [ApiController]
     public class DashboardController : ControllerBase
     {

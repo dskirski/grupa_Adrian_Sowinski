@@ -4,9 +4,9 @@ using FluentValidation;
 
 namespace EbookShop.Services.Validation
 {
-    public class RegistrationDTOValidator : AbstractValidator<RegistrationDto>
+    public class RegistrationDtoValidator : AbstractValidator<RegistrationDto>
     {
-        public RegistrationDTOValidator()
+        public RegistrationDtoValidator()
         {
             RuleFor(rdto => rdto.Email).NotEmpty().EmailAddress();
             RuleFor(rdto => rdto.Password).NotEmpty().Password();

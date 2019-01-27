@@ -76,7 +76,7 @@ namespace EbookShop.Web
             services.AddMediatR(typeof(UserService).GetTypeInfo().Assembly);
 
             // Register validators
-            services.AddScoped<IValidator<RegistrationDto>, RegistrationDTOValidator>();
+            services.AddScoped<IValidator<RegistrationDto>, RegistrationDtoValidator>();
             services.AddHttpContextAccessor();
 
             // Configure JWT

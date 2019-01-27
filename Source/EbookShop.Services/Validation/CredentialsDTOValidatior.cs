@@ -6,9 +6,9 @@ using FluentValidation;
 
 namespace EbookShop.Services.Validation
 {
-    public class CredentialsDTOValidatior : AbstractValidator<CredentialsDto>
+    public class CredentialsDtoValidatior : AbstractValidator<CredentialsDto>
     {
-        public CredentialsDTOValidatior()
+        public CredentialsDtoValidatior()
         {
             RuleFor(p => p.Password).Password();
             RuleFor(p => p.UserName).NotEmpty(); 
