@@ -1,20 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
+import { ShoppingCartService } from '../shopping-cart.service';
 
 @Component({
   selector: 'app-nav-menu1',
   templateUrl: './nav-menu1.component.html',
   styleUrls: ['./nav-menu1.component.css'],
-  providers: [UserService]
+  providers: [UserService, ShoppingCartService]
 })
-export class NavMenu1Component implements OnInit{
+export class NavMenu1Component implements OnInit {
   status: boolean;
-  constructor(private userService: UserService) {
-   }
+
+
+  constructor(private userService: UserService, public cartService: ShoppingCartService) {
+  }
 
   isLoggedIn() {
     return this.userService.isLoggedIn();
-}
+  }
 
   ngOnInit() {
     this.status = this.userService.isLoggedIn();
@@ -24,7 +27,7 @@ export class NavMenu1Component implements OnInit{
     this.status = false;
   }
   isExpanded = false;
-  
+
   collapse() {
     this.isExpanded = false;
   }
