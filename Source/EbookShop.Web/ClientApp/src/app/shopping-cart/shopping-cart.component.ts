@@ -21,3 +21,4 @@ export class ShoppingCartComponent implements OnInit {
   purchase($event, model) {
     alert("Coming soon!");
   }
+}
