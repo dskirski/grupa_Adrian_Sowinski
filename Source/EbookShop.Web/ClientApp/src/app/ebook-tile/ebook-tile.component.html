@@ -1,0 +1,18 @@
+<div class="block">
+
+  <a href="/"><img class="full-img" src="/src"></a>
+  <a href="/">
+    <h4 id="title" class="margin-bottom "><strong>{{ ebookModel.Title }}</strong></h4>
+  </a>
+
+  <h5 class="margin-bottom">{{ ebookModel.Description }}</h5>
+  <h4>{{ebookModel.Price}} zł</h4>
+
+  <form class="customform s-12 margin-bottom2x" action="">
+    <div>
+      <button id="button" class="button rounded-btn submit-btn s-12" type="submit" (click)="onClick($event, ebookModel)">
+        {{buttonText}}
+      </button>
+    </div>
+  </form>
+</div>

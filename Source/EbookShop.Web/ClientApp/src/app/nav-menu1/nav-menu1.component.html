@@ -1,4 +1,4 @@
- <!-- HEADER -->
+<!-- HEADER -->
 <header>
   <div class="line">
     <div class="box">
@@ -12,35 +12,36 @@
             <div class="s-3"><button type="submit">Search</button></div>
           </form>
           <div class="s-12 l-4">
-            <p class="right cart"><i class="icon-sli-basket"></i> <b>3 items</b> / EUR 199.90</p>
+            <p class="right cart"><i class="icon-sli-basket"></i> <b>{{cartService.count()}} items</b> /
+              {{cartService.total() | number:'1.1-2'}} PLN</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-  </header>
+</header>
 
-  <!-- TOP NAV -->
-  <div class='main-nav'>
-    <nav>
-      <p class="nav-text">Main navigation</p>
-      <div class="top-nav">
-        <ul class="right">
-          <li>
-            <a *ngIf="isLoggedIn()" [routerLink]='[""]' (click)='logOut()'>Wyloguj</a>
-            <a *ngIf="!isLoggedIn()" [routerLink]='["/login"]' (click)='collapse()'>Logowanie</a>
-          </li>
-          <li *ngIf="!isLoggedIn()">
-            <a [routerLink]='["/register"]' (click)='collapse()'>Rejestracja</a>
-          </li>
-          <li>
-            <a>Moje pozycje</a>
-          </li>
-          <li>
-            <a>Pomoc</a>
-          </li>
-          <li><a>Koszyk</a></li>
-        </ul>
-      </div>
-    </nav>
-  </div>
+<!-- TOP NAV -->
+<div class='main-nav'>
+  <nav>
+    <p class="nav-text">Main navigation</p>
+    <div class="top-nav">
+      <ul class="right">
+        <li>
+          <a *ngIf="isLoggedIn()" [routerLink]='[""]' (click)='logOut()'>Wyloguj</a>
+          <a *ngIf="!isLoggedIn()" [routerLink]='["/login"]' (click)='collapse()'>Logowanie</a>
+        </li>
+        <li *ngIf="!isLoggedIn()">
+          <a [routerLink]='["/register"]' (click)='collapse()'>Rejestracja</a>
+        </li>
+        <li>
+          <a>Moje pozycje</a>
+        </li>
+        <li>
+          <a>Pomoc</a>
+        </li>
+        <li><a [routerLink]='["/shopping-cart"]'>Koszyk</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>

@@ -17,6 +17,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { RegistrationFormComponent } from './account/registration-form/registration-form.component';
 import { LoginFormComponent } from './account/login-form/login-form.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { EbookTileComponent } from './ebook-tile/ebook-tile.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { SpinnerComponent } from './spinner/spinner.component';
     DisplayEbook,
     RegistrationFormComponent,
     LoginFormComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    EbookTileComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -45,6 +49,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'register', component: RegistrationFormComponent },
       { path: 'login', component: LoginFormComponent },
+      { path: 'shopping-cart', component: ShoppingCartComponent },
     ])
   ],
   bootstrap: [AppComponent]
