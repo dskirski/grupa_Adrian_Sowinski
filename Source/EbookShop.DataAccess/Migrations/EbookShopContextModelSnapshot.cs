@@ -15,7 +15,7 @@ namespace EbookShop.DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.0-rtm-30799")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -99,36 +99,6 @@ namespace EbookShop.DataAccess.Migrations
                     b.ToTable("Authors");
                 });
 
-            modelBuilder.Entity("EbookShop.Models.AuthorEbooks", b =>
-                {
-                    b.Property<int>("AuthorId");
-
-                    b.Property<int>("EbookId");
-
-                    b.HasKey("AuthorId", "EbookId");
-
-                    b.HasIndex("EbookId");
-
-                    b.ToTable("AuthorEbooks");
-                });
-
-            modelBuilder.Entity("EbookShop.Models.Category", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasMaxLength(30);
-
-                    b.Property<string>("Description");
-
-                    b.HasKey("CategoryId");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("EbookShop.Models.Customer", b =>
                 {
                     b.Property<int>("CustomerId")
@@ -167,17 +137,30 @@ namespace EbookShop.DataAccess.Migrations
                     b.ToTable("Ebooks");
                 });
 
-            modelBuilder.Entity("EbookShop.Models.EbookCategories", b =>
+            modelBuilder.Entity("EbookShop.Models.EbookAuthor", b =>
                 {
-                    b.Property<int>("CategoryId");
+                    b.Property<int>("AuthorId");
 
                     b.Property<int>("EbookId");
 
-                    b.HasKey("CategoryId", "EbookId");
+                    b.HasKey("AuthorId", "EbookId");
 
                     b.HasIndex("EbookId");
 
-                    b.ToTable("EbookCategories");
+                    b.ToTable("EbookAuthors");
+                });
+
+            modelBuilder.Entity("EbookShop.Models.EbookGenre", b =>
+                {
+                    b.Property<int>("EbookId");
+
+                    b.Property<int>("GenreId");
+
+                    b.HasKey("EbookId", "GenreId");
+
+                    b.HasIndex("GenreId");
+
+                    b.ToTable("EbookGenres");
                 });
 
             modelBuilder.Entity("EbookShop.Models.FilePath", b =>
@@ -201,6 +184,21 @@ namespace EbookShop.DataAccess.Migrations
                     b.HasIndex("EbookId");
 
                     b.ToTable("Files");
+                });
+
+            modelBuilder.Entity("EbookShop.Models.Genre", b =>
+                {
+                    b.Property<int>("GenreId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30);
+
+                    b.HasKey("GenreId");
+
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("EbookShop.Models.Order", b =>
@@ -334,19 +332,6 @@ namespace EbookShop.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("EbookShop.Models.AuthorEbooks", b =>
-                {
-                    b.HasOne("EbookShop.Models.Author", "Author")
-                        .WithMany("AuthorEbooks")
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("EbookShop.Models.Ebook", "Ebook")
-                        .WithMany("AuthorEbooks")
-                        .HasForeignKey("EbookId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("EbookShop.Models.Customer", b =>
                 {
                     b.HasOne("EbookShop.Models.AppUser", "Identity")
@@ -354,16 +339,29 @@ namespace EbookShop.DataAccess.Migrations
                         .HasForeignKey("IdentityId");
                 });
 
-            modelBuilder.Entity("EbookShop.Models.EbookCategories", b =>
+            modelBuilder.Entity("EbookShop.Models.EbookAuthor", b =>
                 {
-                    b.HasOne("EbookShop.Models.Category", "Category")
-                        .WithMany("EbookCategories")
-                        .HasForeignKey("CategoryId")
+                    b.HasOne("EbookShop.Models.Author", "Author")
+                        .WithMany("Ebooks")
+                        .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("EbookShop.Models.Ebook", "Ebook")
-                        .WithMany("EbookCategories")
+                        .WithMany("Authors")
                         .HasForeignKey("EbookId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("EbookShop.Models.EbookGenre", b =>
+                {
+                    b.HasOne("EbookShop.Models.Ebook", "Ebook")
+                        .WithMany("Genres")
+                        .HasForeignKey("EbookId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("EbookShop.Models.Genre", "Genre")
+                        .WithMany("Ebooks")
+                        .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

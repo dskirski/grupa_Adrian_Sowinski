@@ -1,0 +1,23 @@
+<h3 class=" margin-bottom"><strong>Koszyk</strong></h3>
+
+<div *ngIf="cartService.count() == 0">
+    <h2>Brak produktów w koszyku.</h2>
+</div>
+
+<div *ngIf="cartService.count() > 0">
+    <h2>Oto twoje produkty</h2>
+
+    <div class="cart-item-container">
+        <div class="cart-item" *ngFor="let ebook of cartService.getCart()">
+            <ebook-tile [ebookModel]="ebook" [buttonText]="'Remove from cart'" [buttonCallback]="removeFromCart.bind(this)"></ebook-tile>
+        </div>
+    </div>
+
+    <hr />
+
+    <h2>Total: {{cartService.total() | number:'1.1-2'}} zł</h2>
+    <button id="button" class="button rounded-btn submit-btn s-2" type="submit" (click)="purchase($event)">
+        Purchase items
+    </button>
+
+</div>

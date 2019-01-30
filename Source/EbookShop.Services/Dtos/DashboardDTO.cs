@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EbookShop.Services.Dtos
 {
-    public class DashboardDTO
+    public class DashboardDto
     {
         public string FirstName { get; set; }
 

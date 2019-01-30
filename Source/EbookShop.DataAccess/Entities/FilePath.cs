@@ -23,7 +23,7 @@ namespace EbookShop.Models
         /// </summary>
         public FileType FileType { get; set; }
 
-
+        public int? EbookId { get; set; }
         public Ebook Ebook { get; set; }
 
     }
@@ -32,7 +32,7 @@ namespace EbookShop.Models
     {
         EBOOK_EPUB,
         EBOOK_MOBI,
-        EBOOK_PDF
-
+        EBOOK_PDF,
+        EBOOK_COVER
     }
 }

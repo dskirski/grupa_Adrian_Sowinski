@@ -1,24 +1,7 @@
-
 <h3 class=" margin-bottom"><strong>{{title}}</strong></h3>
 <ul class="list-inline">
   <li id="element" *ngFor="let eb of ebooks |paginate: { itemsPerPage: 5, currentPage: p}">
-
-    <div class="block">
-
-      <a href="/"><img class="full-img" src="/src"></a>
-     
-        <a href="/"><h4 id="title"  class="margin-bottom "><strong>{{ eb.Title }}</strong></h4></a>
-     
-        <h5 class="margin-bottom">{{ eb.Description }}</h5>
-      <h4>{{eb.Price}} zł</h4>
-
-      <form class="customform s-12 margin-bottom2x" action="">
-        <div><button id="button" class="button rounded-btn submit-btn s-12" type="submit">Add to Cart</button></div>
-      </form>
-    </div>
-
-
+    <ebook-tile [ebookModel]="eb" [buttonText]="'Add to cart'" [buttonCallback]="addToCart.bind(this)"></ebook-tile>
   </li>
 </ul>
 <pagination-controls class="margin2x my-pagination" (pageChange)="p = $event"></pagination-controls>
-

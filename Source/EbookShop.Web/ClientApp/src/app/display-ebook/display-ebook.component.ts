@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ShoppingCartService } from '../shopping-cart.service';
 
 
 @Component({
   selector: 'display-ebook',
   templateUrl: './display-ebook.component.html',
-  styleUrls: ['./display-ebook.component.css']
+  styleUrls: ['./display-ebook.component.css'],
+  providers: [ShoppingCartService]
 })
 
 
@@ -14,7 +16,7 @@ export class DisplayEbook implements OnInit {
   ebooks = Array<Ebook>();
   p: number = 1;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private readonly cartService: ShoppingCartService) {
   }
 
   ngOnInit(): void {
@@ -25,7 +27,9 @@ export class DisplayEbook implements OnInit {
       );
   }
 
-
+  addToCart($event, model) {
+    this.cartService.addItem(model);
+  }
 
 
 }
